@@ -6,17 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Countries</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="grid.css">
     <script src="https://kit.fontawesome.com/7e62f6f820.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <div id="root">
-        <div class="navbar">
-            <h2>Where in the world?</h2>
-            <a href=""><i class="far fa-moon">Dark mode</i>
-            </a>
+        <div class="navbar row">
+            <div class="col-12 md-col-6 lg-col-6 sm-col-6 ">
+                <h2>Where in the world?</h2>
+            </div>
+            <div class="col-12 md-col-6 lg-col-6 sm-col-6">
+                <div class="dark-mode">
+                    <i class="far fa-moon"></i>
+                    <a href="">Dark Mode</a>
+                </div>
+            </div>
         </div>
-
+        <div class="container">
+        </div>
     </div>
     <script src="app.js"></script>
 </body>
