@@ -1,19 +1,34 @@
-let container = document.getElementById("country-container");
+let countryRow = document.getElementById("country-row");
 let allCountries = [];
 
 function apiFetch(url) {
-  fetch(url)
+  const responsePromise = fetch(url)
     .then((response) => response.json())
-    .then((data) => createCountryCard(data))
+    .then((data) => {
+      allCountries = data;
+      console.log(allCountries);
+    })
     .catch((err) => console.log(err));
+  return responsePromise;
 }
-apiFetch("https://restcountries.eu/rest/v2/all");
+
+apiFetch("https://restcountries.eu/rest/v2/all").then(() =>
+  createCountryCard(allCountries)
+);
 
 function createCountryCard(countries) {
   countries.forEach((country) => {
-    container.innerHTML += `<div>
-    <img src="${country.flag}">
+    countryRow.innerHTML += ` 
+    <div class="col-12 md-col-6 lg-col-4 xl-col-3 sm-col-12">
+      <div class="country-card">
+        <div class="content-card">
+          <img class="img-card" src="${country.flag}">
+          <h3>${country.name}</h3>
+          <p>Population: <span>${country.population}</span></p>
+          <p>Region: <span>${country.region}</span></p>
+          <p>Capital: <span>${country.capital}</span></p>
+        </div>
+      </div>
     </div>`;
   });
 }
-// createCountryCard(allCountries);
