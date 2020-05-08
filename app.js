@@ -32,3 +32,7 @@ function createCountryCard(countries) {
     </div>`;
   });
 }
+function darkMode() {
+  let body = document.body;
+  body.classList.toggle("dark-mode");
+}

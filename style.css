@@ -27,7 +27,7 @@ h2 {
     padding-left: 30px;
 }
 
-.dark-mode {
+.dark {
     text-align: right;
     padding-right: 30px;
     font-size: 0.7em;
@@ -121,12 +121,19 @@ select {
     font-weight: 300;
 }
 
+
+.dark-mode {
+    background-color: hsl(207, 26%, 17%);
+}
+
+
+
 @media (min-width: 500px) {
     h2 {
         font-size: 1.2rem;
     }
 
-    .dark-mode {
+    .dark {
         font-size: 1em;
     }
 
@@ -143,7 +150,7 @@ select {
         font-size: 1.5rem;
     }
 
-    .dark-mode {
+    .dark {
 
         font-size: 1.1em;
     }
