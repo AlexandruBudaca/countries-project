@@ -24,7 +24,9 @@ function createCountryCard(countries) {
         <div class="content-card">
           <img class="img-card" src="${country.flag}">
           <h3>${country.name}</h3>
-          <p>Population: <span>${country.population}</span></p>
+          <p>Population: <span>${country.population
+            .toString()
+            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
           <p>Region: <span>${country.region}</span></p>
           <p>Capital: <span>${country.capital}</span></p>
         </div>
