@@ -13,14 +13,14 @@
 
 <body>
     <div id="root">
-        <div class="navbar row">
+        <div id="navbar" class="navbar row">
             <div class="col-12 md-col-6 lg-col-6 sm-col-6 ">
-                <h2>Where in the world?</h2>
+                <h2 id="navbar-title" class="title">Where in the world?</h2>
             </div>
             <div class="col-12 md-col-6 lg-col-6 sm-col-6">
                 <div class="dark">
                     <i class="far fa-moon"></i>
-                    <a onclick="darkMode()">Dark Mode</a>
+                    <button onclick="darkMode()">Dark Mode</button>
                 </div>
             </div>
         </div>
@@ -29,7 +29,8 @@
                 <div class="col-12 md-col-6 lg-col-6 xl-col-3 sm-col-12">
                     <div class="input-search">
                         <i class="fas fa-search"></i>
-                        <input type="text" placeholder="Search for a country..."></input>
+                        <input id="search-input" type="text" placeholder="Search for a country..."
+                            onchange="searchCountry()"></input>
                     </div>
                 </div>
                 <div class="col-12 md-col-6 lg-col-6 xl-col-9 sm-col-12">
