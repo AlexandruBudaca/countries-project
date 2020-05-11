@@ -172,19 +172,20 @@ select {
     font-weight: 300;
     border: 1px solid #999999;
     font-size: 14px;
+    margin-left: 0;
 }
-
-
 
 .single-country {
     margin-top: 50px;
-
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-wrap: wrap;
 }
 
-
 .single-country-img img {
-    width: 500px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
 }
 
 .country-content {
@@ -192,6 +193,40 @@ select {
     display: flex;
     flex-wrap: wrap;
 }
+
+.country-content h3 {
+    margin-bottom: 30px;
+}
+
+.div-borders p {
+    margin-top: 30px;
+    font-weight: 600;
+}
+
+
+
+.div-top {
+    margin-top: 20px;
+
+}
+
+.div-top p span {
+    font-weight: 300;
+}
+
+.div-top p {
+    font-weight: 600;
+}
+
+.div-name p span {
+    font-weight: 300;
+}
+
+.div-name p {
+    font-weight: 600;
+}
+
+
 
 @media (min-width: 500px) {
     .title {

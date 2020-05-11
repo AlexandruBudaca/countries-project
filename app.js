@@ -13,10 +13,10 @@ function apiFetch(url) {
 
 apiFetch("https://restcountries.eu/rest/v2/all").then((data) => {
   allCountries = data;
-  createCountryCards(allCountries);
+  createAllCountryCards(data);
 });
 
-function createCountryCards(countries) {
+function createAllCountryCards(countries) {
   countryRow.innerHTML = "";
   countries.forEach((country) => {
     countryRow.innerHTML += ` 
@@ -66,14 +66,14 @@ function createCountryPage(country) {
 
   countryRow.innerHTML = ` 
   <div class="single-country row">
-    <div col-12 lg-col-3 md-col-3>
+    <div col-12 lg-col-4 md-col-4>
       <div id="card-id" class="single-country-img">
         <img id="flag" class="img-card" src="${country[0].flag}">
       </div>
     </div>
     
-     <div class="country-content">
-        <div class="div-name col-12 lg-col-6 md-col-6">
+     <div class="country-content col-12 lg-col-6 md-col-4">
+        <div class="div-name lg-col-6 md-col-4">
           <h3>${country[0].name}</h3>
           <p>Native Name: <span>${country[0].nativeName}</span></p>
           <p>Population: <span>${country[0].population
@@ -83,7 +83,7 @@ function createCountryPage(country) {
           <p>Sub Region: <span>${country[0].subregion}</span></p>
           <p>Capital: <span>${country[0].capital}</span></p>
         </div>
-        <div class="div-top col-12 lg-col-6 md-col-6">
+        <div class="div-top lg-col-6 md-col-4">
           <p class="top-domain">Top Level Domain: <span>${
             country[0].topLevelDomain
           }</span></p>
@@ -92,8 +92,8 @@ function createCountryPage(country) {
             (lang) => lang.name
           )}</span></p>
         </div>
-      <div class="div-borders">
-        <p class= "border-countries">Border Countries: </p>
+      <div class="div-borders lg-col-10 md-col-4">
+        <p>Border Countries: </p>
         ${country[0].borders
           .slice(0, 3)
           .map((border) => {
