@@ -1,5 +1,9 @@
 let countryRow = document.getElementById("country-row");
 let searchInput = document.getElementById("search-input");
+let bordersBtn = document.createElement("button");
+
+let allCountries = [];
+
 function apiFetch(url) {
   const responsePromise = fetch(url)
     .then((response) => response.json())
@@ -8,7 +12,8 @@ function apiFetch(url) {
 }
 
 apiFetch("https://restcountries.eu/rest/v2/all").then((data) => {
-  createCountryCards(data);
+  allCountries = data;
+  createCountryCards(allCountries);
 });
 
 function createCountryCards(countries) {
@@ -47,10 +52,10 @@ function darkMode() {
 
 function searchCountry() {
   if (searchInput.value === "") {
+    alert("alex");
   } else {
-    let countryUrl = `https://restcountries.eu/rest/v2/name/${searchInput.value}?fullText=true`;
+    let countryUrl = `https://restcountries.eu/rest/v2/name/${searchInput.value}`;
     apiFetch(countryUrl).then((data) => {
-      console.log(data);
       createCountryPage(data);
     });
   }
@@ -59,19 +64,26 @@ function searchCountry() {
 function createCountryPage(country) {
   countryRow.innerHTML = "";
 
-  countryRow.innerHTML += ` 
-    <div class="col-12 md-col-6 lg-col-4 xl-col-3 sm-col-12">
-      <div class="country-card">
-        <div id="card-id" class="content-card ">
-          <img id="flag" class="img-card" src="${country[0].flag}">
+  countryRow.innerHTML = ` 
+  <div class="single-country row">
+    <div col-12 lg-col-3 md-col-3>
+      <div id="card-id" class="single-country-img">
+        <img id="flag" class="img-card" src="${country[0].flag}">
+      </div>
+    </div>
+    
+     <div class="country-content">
+        <div class="div-name col-12 lg-col-6 md-col-6">
           <h3>${country[0].name}</h3>
+          <p>Native Name: <span>${country[0].nativeName}</span></p>
           <p>Population: <span>${country[0].population
             .toString()
             .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
           <p>Region: <span>${country[0].region}</span></p>
           <p>Sub Region: <span>${country[0].subregion}</span></p>
           <p>Capital: <span>${country[0].capital}</span></p>
-      
+        </div>
+        <div class="div-top col-12 lg-col-6 md-col-6">
           <p class="top-domain">Top Level Domain: <span>${
             country[0].topLevelDomain
           }</span></p>
@@ -79,11 +91,29 @@ function createCountryPage(country) {
           <p>Languages: <span>${country[0].languages.map(
             (lang) => lang.name
           )}</span></p>
-          <p>Border Countries: </p>
-                <div>
-             <span>${country[0].borders}</span>
-             </div>
-          </div>
-      </div>
-    </div>`;
+        </div>
+      <div class="div-borders">
+        <p class= "border-countries">Border Countries: </p>
+        ${country[0].borders
+          .slice(0, 3)
+          .map((border) => {
+            allCountries.filter((country) => {
+              if (country.alpha3Code.includes(border)) {
+                border = country.name;
+              }
+            });
+            return `${`<button id= "${border}" class="borders-btn" onclick="clickBorderButton(this.id)">${border}</button>`}`;
+          })
+          .join("")}
+        </div>
+        </div>
+   </div>`;
+}
+function clickBorderButton(clicked) {
+  let buttonBorder = document.getElementById(clicked).id;
+  console.log(buttonBorder);
+  let countryUrl = `https://restcountries.eu/rest/v2/name/${buttonBorder}?fullText=true`;
+  apiFetch(countryUrl).then((data) => {
+    createCountryPage(data);
+  });
 }
