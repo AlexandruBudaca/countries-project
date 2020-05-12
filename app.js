@@ -6,7 +6,12 @@ let allCountries = [];
 
 function apiFetch(url) {
   const responsePromise = fetch(url)
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        alert("Sorry! We didn't find any country!");
+      }
+      return response.json();
+    })
     .catch((err) => console.log(err));
   return responsePromise;
 }
@@ -40,22 +45,11 @@ function createAllCountryCards(countries) {
     </div>`;
   });
 }
-function darkMode() {
-  let body = document.body;
-  body.classList.toggle("dark-mode-body");
-  let navbar = document.getElementById("navbar");
-  navbar.classList.toggle("dark-mode-elements");
-  let card = document.getElementById("card-id");
-  card.classList.toggle("dark-mode-elements");
-  let title = document.getElementById("navbar-title");
-  title.classList.toggle("dark-mode-color");
-  let img = document.getElementById("flag");
-  img.classList.toggle("dark-mode-img");
-}
 
 function searchCountry() {
   if (searchInput.value === "") {
     alert("The search box is empty!");
+    createAllCountryCards(allCountries);
   } else {
     let countryUrl = `https://restcountries.eu/rest/v2/name/${searchInput.value}`;
     apiFetch(countryUrl).then((data) => {
@@ -120,6 +114,12 @@ function createCountryPage(country) {
 function clickBorderButton(clicked) {
   let buttonBorder = document.getElementById(clicked).id;
   let countryUrl = `https://restcountries.eu/rest/v2/name/${buttonBorder}?fullText=true`;
+  apiFetch(countryUrl).then((data) => {
+    createCountryPage(data);
+  });
+}
+
+function filterByOrigin() {
   apiFetch(countryUrl).then((data) => {
     createCountryPage(data);
   });
