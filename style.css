@@ -95,8 +95,9 @@ select {
     flex-direction: column;
     align-items: center;
     margin-top: 40px;
-
 }
+
+
 
 .img-card {
     width: 300px;
@@ -113,6 +114,10 @@ select {
     background-color: hsl(0, 0%, 100%);
     margin-top: 20px;
     padding-bottom: 20px;
+}
+
+.content-card:hover {
+    transform: scale(1.1)
 }
 
 .content-card h3 {
@@ -166,7 +171,7 @@ select {
 }
 
 .borders-btn {
-    background-color: hsl(0, 0%, 98%);
+    background-color: hsl(0, 0%, 100%);
     margin: 10px;
     cursor: pointer;
     font-weight: 300;
@@ -175,12 +180,18 @@ select {
     margin-left: 0;
 }
 
+.borders-btn:hover {
+    background-color: hsl(0, 0%, 98%);
+    transform: scale(1.1)
+}
+
 .single-country {
     margin-top: 50px;
     display: flex;
     justify-content: center;
     align-self: center;
     flex-wrap: wrap;
+
 }
 
 .single-country-img img {
@@ -192,9 +203,11 @@ select {
     margin-left: 50px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: left;
 }
 
 .country-content h3 {
+    margin-top: 20px;
     margin-bottom: 30px;
 }
 
@@ -226,7 +239,28 @@ select {
     font-weight: 600;
 }
 
+.backBtn {
+    font-weight: 300;
+    font-size: 16px;
+}
 
+.div-backBtn {
+    max-width: 150px;
+    margin-left: 18px;
+    margin-top: 50px;
+    background-color: hsl(0, 0%, 100%);
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #999999;
+    cursor: pointer;
+}
+
+.div-backBtn:hover {
+    background-color: hsl(0, 0%, 98%);
+    transform: scale(1.1)
+}
 
 @media (min-width: 500px) {
     .title {
@@ -242,6 +276,10 @@ select {
         margin-top: 20px;
     }
 
+    .single-country-img img {
+        width: 400px;
+        height: 300px;
+    }
 
 }
 
@@ -271,9 +309,14 @@ select {
         padding: 0px
     }
 
+    .single-country-img img {
+        width: 300px;
+        height: 200px;
+    }
+
 }
 
-@media (min-width: 1240px) {
+@media (min-width: 1200px) {
     .img-card {
         width: 300px;
         margin: 0px
@@ -287,6 +330,11 @@ select {
 
     .country-card {
         padding: 0px
+    }
+
+    .single-country-img img {
+        width: 500px;
+        height: 300px;
     }
 
 }
