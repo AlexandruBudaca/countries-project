@@ -30,7 +30,7 @@ function createAllCountryCards(countries) {
       <div class="country-card">
       <a id="${
         country.name
-      }" class="country-link" onclick="clickBorderButton(this.id)">
+      }" class="country-link" onclick="clickBorderButtonAndCountry(this.id)">
         <div id="card-id" class="content-card ">
           <img id="flag" class="img-card" src="${country.flag}">
           <h3>${country.name}</h3>
@@ -104,14 +104,14 @@ function createCountryPage(country) {
                 border = country.name;
               }
             });
-            return `${`<button id= "${border}" class="borders-btn" onclick="clickBorderButton(this.id)">${border}</button>`}`;
+            return `${`<button id= "${border}" class="borders-btn" onclick="clickBorderButtonAndCountry(this.id)">${border}</button>`}`;
           })
           .join("")}
         </div>
         </div>
    </div>`;
 }
-function clickBorderButton(clicked) {
+function clickBorderButtonAndCountry(clicked) {
   let buttonBorder = document.getElementById(clicked).id;
   let countryUrl = `https://restcountries.eu/rest/v2/name/${buttonBorder}?fullText=true`;
   apiFetch(countryUrl).then((data) => {
