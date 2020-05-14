@@ -8,10 +8,11 @@ function apiFetch(url) {
   const responsePromise = fetch(url)
     .then((response) => {
       if (!response.ok) {
-        alert("Sorry! We didn't find any country!");
+        throw Error("Sorry! We didn't find any country!");
       }
       return response.json();
     })
+
     .catch((err) => console.log(err));
   return responsePromise;
 }
@@ -22,40 +23,52 @@ apiFetch("https://restcountries.eu/rest/v2/all").then((data) => {
 });
 
 function createAllCountryCards(countries) {
-  searchInput.value = "";
   countryRow.innerHTML = "";
   countries.forEach((country) => {
-    countryRow.innerHTML += ` 
-    <div class="col-12 md-col-6 lg-col-4 xl-col-3 sm-col-12">
-      <div class="country-card">
-      <a id="${
-        country.name
-      }" class="country-link" onclick="clickBorderButtonAndCountry(this.id)">
-        <div id="card-id" class="content-card ">
-          <img id="flag" class="img-card" src="${country.flag}">
-          <h3>${country.name}</h3>
-          <p>Population: <span>${country.population
-            .toString()
-            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</span></p>
-          <p>Region: <span>${country.region}</span></p>
-          <p>Capital: <span>${country.capital}</span></p>
-        </div>
-      </div>
-      </a>
-    </div>`;
+    let mainDiv = document.createElement("div");
+    mainDiv.className = "col-12 md-col-6 lg-col-4 xl-col-3 sm-col-12";
+    countryRow.appendChild(mainDiv);
+    let div = document.createElement("div");
+    div.className = "country-card";
+    mainDiv.appendChild(div);
+    let countryLink = document.createElement("a");
+    countryLink.id = country.name;
+    countryLink.className = "country-link";
+    countryLink.addEventListener("click", function () {
+      clickBorderButtonAndCountry(this.id);
+    });
+    div.appendChild(countryLink);
+    let divContent = document.createElement("div");
+    divContent.id = "card-id";
+    divContent.className = "content-card";
+    countryLink.appendChild(divContent);
+    let img = document.createElement("img");
+    img.id = "flag";
+    img.className = "img-card";
+    img.src = country.flag;
+    divContent.appendChild(img);
+    let countryTitle = document.createElement("h3");
+    countryTitle.innerText = country.name;
+    divContent.appendChild(countryTitle);
+    let population = document.createElement("p");
+    population.innerText = `Population: ${country.population}`
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    divContent.appendChild(population);
+    let region = document.createElement("p");
+    region.innerText = `Region: ${country.region}`;
+    divContent.appendChild(region);
+    let capital = document.createElement("p");
+    capital.innerText = `Capital: ${country.capital}`;
+    divContent.appendChild(capital);
   });
 }
 
 function searchCountry() {
-  if (searchInput.value === "") {
-    alert("The search box is empty!");
-    createAllCountryCards(allCountries);
-  } else {
-    let countryUrl = `https://restcountries.eu/rest/v2/name/${searchInput.value}`;
-    apiFetch(countryUrl).then((data) => {
-      createCountryPage(data);
-    });
-  }
+  const findCountry = allCountries.filter((country) =>
+    country.name.toLowerCase().includes(searchInput.value.toLowerCase())
+  );
+  createAllCountryCards(findCountry);
 }
 
 function createCountryPage(country) {
@@ -112,6 +125,9 @@ function createCountryPage(country) {
    </div>`;
 }
 function clickBorderButtonAndCountry(clicked) {
+  searchInput.value = "";
+  document.getElementById("default").selected = true;
+
   let buttonBorder = document.getElementById(clicked).id;
   let countryUrl = `https://restcountries.eu/rest/v2/name/${buttonBorder}?fullText=true`;
   apiFetch(countryUrl).then((data) => {
@@ -120,7 +136,11 @@ function clickBorderButtonAndCountry(clicked) {
 }
 
 function filterByOrigin() {
-  apiFetch(countryUrl).then((data) => {
-    createCountryPage(data);
+  let select = document.getElementById("filter-region");
+  let regionUrl = select.options[select.selectedIndex].value;
+  console.log(regionUrl);
+  let newRegionUrl = `https://restcountries.eu/rest/v2/region/${regionUrl}`;
+  apiFetch(newRegionUrl).then((data) => {
+    createAllCountryCards(data);
   });
 }

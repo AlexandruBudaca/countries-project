@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="grid.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/7e62f6f820.js" crossorigin="anonymous" `SameSite=None`></script>
+    <script src="https://kit.fontawesome.com/7e62f6f820.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -30,13 +30,18 @@
                     <div class="input-search">
                         <i class="fas fa-search"></i>
                         <input id="search-input" type="text" placeholder="Search for a country..."
-                            onchange="searchCountry()"></input>
+                            oninput="searchCountry()"></input>
                     </div>
                 </div>
                 <div class="col-12 md-col-6 lg-col-6 xl-col-9 sm-col-12">
                     <div class="custom-select">
-                        <select>
-                            <option value="">Filter by Region</option>
+                        <select id="filter-region" onchange="filterByOrigin()">
+                            <option id="default">Filter by Region</option>
+                            <option value="Africa">Africa</option>
+                            <option value="Americas">Americas</option>
+                            <option value="Asia">Asia</option>
+                            <option value="Europe">Europe</option>
+                            <option value="Oceania">Oceania</option>
                         </select>
                     </div>
 
