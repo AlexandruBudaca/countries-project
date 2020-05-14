@@ -7,6 +7,7 @@
     <title>Countries</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="grid.css">
+    <link rel="stylesheet" href="style dark.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/7e62f6f820.js" crossorigin="anonymous"></script>
 </head>
@@ -19,8 +20,9 @@
             </div>
             <div class="col-12 md-col-6 lg-col-6 sm-col-6">
                 <div class="dark">
-                    <i class="far fa-moon"></i>
-                    <button onclick="darkMode()">Dark Mode</button>
+                    <i id="moon" class="far fa-moon"></i>
+                    <button id="navBtn" class="light-btn" onclick="darkMode(); changeDarkBtn()">Dark
+                        Mode</button>
                 </div>
             </div>
         </div>

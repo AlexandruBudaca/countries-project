@@ -35,7 +35,7 @@ body {
     justify-content: flex-end;
 }
 
-button {
+.light-btn {
     color: hsl(200, 15%, 8%);
     text-decoration: none;
     cursor: pointer;
@@ -47,9 +47,17 @@ button {
     padding: 5px;
 }
 
+.fa-moon {
+    font-size: 19px;
+}
 
 .search {
     margin-top: 20px;
+    color: hsl(200, 15%, 8%);
+}
+
+.fa-search {
+    color: hsl(200, 15%, 8%);
 }
 
 input {
@@ -60,6 +68,9 @@ input {
     outline: none;
     padding-left: 50px;
     font-size: 15px;
+}
+
+input::placeholder {
     color: hsl(200, 15%, 8%);
 }
 
@@ -85,6 +96,7 @@ select {
     padding: 18px;
     width: 50px;
     height: 50px;
+    color: ;
 }
 
 
@@ -120,7 +132,7 @@ select {
     transform: scale(1.1)
 }
 
-.content-card h3 {
+h3 {
     text-align: left;
     margin-left: 20px;
     font-weight: 800;
@@ -130,7 +142,7 @@ select {
 
 }
 
-.content-card p {
+p {
     text-align: left;
     font-weight: 600;
     margin-left: 20px;
@@ -141,24 +153,6 @@ select {
 .content-card p span {
     font-weight: 300;
     color: hsl(200, 15%, 8%);
-}
-
-
-.dark-mode-body {
-    background-color: hsl(207, 26%, 17%);
-}
-
-.dark-mode-elements {
-    background-color: hsl(209, 23%, 22%);
-    box-shadow: 2px 2px 10px #111111;
-}
-
-.dark-mode-color {
-    color: hsl(0, 0%, 100%);
-}
-
-.dark-mode-img {
-    box-shadow: 2px 2px 10px #111111;
 }
 
 
@@ -242,6 +236,10 @@ select {
 .backBtn {
     font-weight: 300;
     font-size: 16px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
 }
 
 .div-backBtn {
@@ -258,8 +256,7 @@ select {
 }
 
 .div-backBtn:hover {
-    background-color: hsl(0, 0%, 98%);
-    transform: scale(1.1)
+    transform: scale(1.1);
 }
 
 #filter-region {
@@ -271,7 +268,7 @@ select {
         font-size: 1.2rem;
     }
 
-    button {
+    .light-btn {
         font-size: 1em;
     }
 
@@ -285,6 +282,11 @@ select {
         height: 300px;
     }
 
+    .fa-moon {
+        font-size: 16px;
+    }
+
+
 }
 
 @media (min-width: 768px) {
@@ -292,7 +294,7 @@ select {
         font-size: 1.5rem;
     }
 
-    button {
+    .light-btn {
         font-size: 1.1em;
     }
 
@@ -318,6 +320,9 @@ select {
         height: 200px;
     }
 
+    .fa-moon {
+        font-size: 18px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -340,5 +345,6 @@ select {
         width: 500px;
         height: 300px;
     }
+
 
 }
