@@ -144,3 +144,40 @@ function filterByOrigin() {
     createAllCountryCards(data);
   });
 }
+let initialTheme;
+function darkMode() {
+  const root = document.documentElement;
+
+  if (initialTheme) {
+    root.style.setProperty("--background-color", "hsl(0, 0%, 98%)");
+    root.style.setProperty("--text-color", "hsl(200, 15%, 8%)");
+    root.style.setProperty("--elements-color", "hsl(0, 0%, 100%)");
+    root.style.setProperty("--box-shadow", "2px 2px 8px #999999");
+
+    initialTheme = false;
+  } else {
+    root.style.setProperty("--background-color", "hsl(207, 26%, 17%)");
+    root.style.setProperty("--text-color", "hsl(0, 0%, 100%)");
+    root.style.setProperty("--elements-color", "hsl(209, 23%, 22%)");
+    root.style.setProperty("--box-shadow", "2px 2px 8px #000");
+    initialTheme = true;
+  }
+}
+
+function changeDarkBtn() {
+  let btn = document.getElementById("navBtn");
+  btn.classList.toggle("dark-btn");
+
+  let moon = document.getElementById("moon");
+  if (moon.className === "far fa-moon") {
+    moon.className = "fas fa-sun";
+  } else {
+    moon.className = "far fa-moon";
+  }
+
+  if (btn.innerText === "Dark Mode") {
+    btn.innerText = "Light Mode";
+  } else {
+    btn.innerText = "Dark Mode";
+  }
+}
