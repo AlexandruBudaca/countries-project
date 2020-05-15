@@ -58,6 +58,7 @@ body {
 }
 
 .fa-sun {
+    font-size: 17px;
     color: hsl(0, 0%, 100%)
 }
 
@@ -339,6 +340,12 @@ p {
     .fa-moon {
         font-size: 18px;
     }
+
+    .fa-sun {
+        font-size: 20px;
+        color: hsl(0, 0%, 100%)
+    }
+
 }
 
 @media (min-width: 1200px) {

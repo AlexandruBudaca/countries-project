@@ -138,7 +138,6 @@ function clickBorderButtonAndCountry(clicked) {
 function filterByOrigin() {
   let select = document.getElementById("filter-region");
   let regionUrl = select.options[select.selectedIndex].value;
-  console.log(regionUrl);
   let newRegionUrl = `https://restcountries.eu/rest/v2/region/${regionUrl}`;
   apiFetch(newRegionUrl).then((data) => {
     createAllCountryCards(data);
