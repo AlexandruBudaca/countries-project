@@ -126,7 +126,7 @@ function createCountryPage(country) {
 }
 function clickBorderButtonAndCountry(clicked) {
   searchInput.value = "";
-  document.getElementById("default").selected = true;
+  document.getElementById(clicked).selected = true;
 
   let buttonBorder = document.getElementById(clicked).id;
   let countryUrl = `https://restcountries.eu/rest/v2/name/${buttonBorder}?fullText=true`;
